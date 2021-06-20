@@ -56,6 +56,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "_id": "sd-modal@0.1.0"
+  }
 }
