@@ -1,14 +1,18 @@
 {
   "name": "sd-modal",
   "version": "0.0.1",
-  "private": true,
+  "description": "A lightweight package for using modals in a vue project.",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-release": "vue-cli-service build --target lib --name modals ./src/index.ts",
     "lint": "vue-cli-service lint",
     "release": "standard-version",
     "prepare": "husky install"
   },
+  "keywords": [],
+  "author": "Kevin Izuchukwu",
+  "license": "ISC",
   "dependencies": {
     "@vue/composition-api": "^1.0.0-rc.12",
     "core-js": "^3.6.5",
@@ -32,21 +36,6 @@
     "typescript": "~4.1.5",
     "vue-template-compiler": "^2.6.11"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/typescript"
-    ],
-    "parserOptions": {
-      "parser": "@typescript-eslint/parser"
-    },
-    "rules": {}
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
@@ -56,5 +45,17 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "files": [
+    "LICENSE",
+    "CHANGELOG.md",
+    "README.md",
+    "dist"
+  ],
+  "repository": {
+    "url": "git://github.com/stranerd/sd-modal.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
