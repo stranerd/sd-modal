@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import Components from './index'
+import { HelloWorld } from './index'
 
 new Vue({
-	render: (h) => h(Components.HelloWorld),
+	render: (h) => h(HelloWorld),
 }).$mount('#app')

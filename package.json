@@ -2,10 +2,10 @@
   "name": "sd-modal",
   "version": "0.0.1",
   "description": "A lightweight package for using modals in a vue project.",
+  "main": "dist/sd-modal.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-release": "vue-cli-service build --target lib --name modals ./src/index.ts",
+    "build": "vue-cli-service build --target lib ./src/index.ts",
     "lint": "vue-cli-service lint",
     "release": "standard-version",
     "prepare": "husky install"
