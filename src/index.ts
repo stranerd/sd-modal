@@ -1,4 +1,2 @@
-import HelloWorld from './components/HelloWorld.vue'
+export { default as HelloWorld } from './components/HelloWorld.vue'
 export { useModal } from './modal'
-
-export { HelloWorld }

@@ -1,5 +1,4 @@
-import { ref } from '@vue/composition-api'
-import type { VueConstructor as Vue } from 'vue/types/umd'
+import { ref, Component as Vue } from 'vue'
 
 const global = {
 	stack: ref([] as string[]),
