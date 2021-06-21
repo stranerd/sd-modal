@@ -7,8 +7,7 @@
   "unpkg": "dist/vuelib.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib ./src/index.ts",
-    "build-rollup": "rimraf dist && cross-env NODE_ENV=production rollup -c",
+    "build": "rimraf dist && cross-env NODE_ENV=production rollup -c",
     "lint": "vue-cli-service lint",
     "release": "standard-version",
     "prepare": "husky install"

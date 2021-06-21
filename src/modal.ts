@@ -1,9 +1,4 @@
-import { ref, Component as Vue } from 'vue'
-
-const global = {
-	stack: ref([] as string[]),
-	modals: ref({} as Record<string, Vue>)
-}
+import type { Ref, Component } from 'vue'
 
 const capitalize = (text: string) => (text[0] ?? '').toUpperCase() + text.slice(1)
 const merge = (type: string, key: string) => type + key
@@ -12,21 +7,23 @@ function spreadModals<T> (type: string, modals: Record<string, T>) {
 	return Object.fromEntries(Object.entries(modals).map(([key, val]) => [merge(type, key), val]))
 }
 
-export const useModal = () => {
+export const useModal = (stack: Ref<string[]>) => {
+	const modals = {}
+
 	const open = (id: string) => {
 		close(id)
-		if (Object.keys(global.modals.value).includes(id)) global.stack.value.push(id)
+		if (Object.keys(modals).includes(id)) stack.value.push(id)
 	}
 
 	const close = (id: string) => {
-		const index = global.stack.value.findIndex((i) => i === id)
-		if (index > -1) global.stack.value.splice(index)
+		const index = stack.value.findIndex((i) => i === id)
+		if (index > -1) stack.value.splice(index)
 	}
 
-	function register<Key extends string> (type: string, modals: Record<Key, Vue>) {
-		global.modals.value = { ...global.modals.value, ...spreadModals(type, modals) }
+	function register<Key extends string> (type: string, modalObject: Record<Key, Component>) {
+		Object.assign(modals, spreadModals(type, modalObject))
 		const helpers = Object.fromEntries(
-			Object.keys(modals)
+			Object.keys(modalObject)
 				.map(capitalize)
 				.map((key) => [
 					[[`open${key}`], () => open(merge(type, key))],
@@ -34,10 +31,10 @@ export const useModal = () => {
 				]).reduce((acc, curr) => acc.concat(curr), [])
 		) as Record<`open${Capitalize<Key>}` | `close${Capitalize<Key>}`, () => void>
 
-		const closeAll = () => Object.keys(modals).forEach((key) => close(merge(type, key)))
+		const closeAll = () => Object.keys(modalObject).forEach((key) => close(merge(type, key)))
 
 		return { ...helpers, closeAll }
 	}
 
-	return { ...global, open, close, register }
+	return { stack, modals, open, close, register }
 }
