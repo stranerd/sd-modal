@@ -66,13 +66,13 @@ export default defineComponent({
 		}
 		position: relative;
 	}
-	@media (min-width: $sm){
+	@media (min-width: var(--size-sm, 576px)){
 		.sd-modal-inner{
 			padding: 1rem;
 			width: 95%;
 		}
 	}
-	@media (min-width: $md){
+	@media (min-width: var(--size-md, 768px)){
 		.sd-modal-inner{
 			width: 90%;
 		}
